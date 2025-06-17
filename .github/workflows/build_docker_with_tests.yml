@@ -71,3 +71,6 @@ jobs:
             format: 'table'
             severity: 'CRITICAL,HIGH'
 
+      - name: Push image to GHCR
+        run: |
+          docker push ghcr.io/${{ github.repository }}:python${{ matrix.version }}
