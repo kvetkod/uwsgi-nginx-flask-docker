@@ -9,6 +9,13 @@ jobs:
           image:
               - name: python3.12
                 python_version: "3.12"
+              - name: python3.11
+                python_version: "3.11"
+              - name: python3.10
+                python_version: "3.10"
+              - name: python3.9
+                python_version: "3.19"
+
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -24,8 +31,10 @@ jobs:
             pip install -r docker-images/requirements.txt
             pip install pytest
             pip install docker
+
       - name: Docker names
         run: echo "NAME=${{ matrix.image.name  }}" >> $GITHUB_ENV 
+
       - name: Run Tests
         run: pytest tests
         env:
