@@ -67,7 +67,7 @@ jobs:
       - name: Scane with Trivy
         uses: aquasecurity/trivy-action@master
         with:
-            image_ref: ${{ env.IMAGE_NAME }}:python3.${{ matrix.version }}
+            image_ref: ghcr.io/${{ github.repository }}:python3.${{ matrix.version }}
             format: 'table'
             severity: 'CRITICAL,HIGH'
 
