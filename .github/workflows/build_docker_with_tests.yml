@@ -23,7 +23,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-            python-version: '3.12'
+            python-version: ${{ matrix.image.python_version }}
 
       - name: Install Dependences
         run: |
@@ -48,7 +48,7 @@ jobs:
       contents: read
       packages: write
     strategy:
-      matrix:
+        matrix:
           version: ["3.9","3.10", "3.11", "3.12"]
 
     steps:
