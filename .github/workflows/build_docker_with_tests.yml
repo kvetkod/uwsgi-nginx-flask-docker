@@ -25,7 +25,7 @@ jobs:
             pip install pytest
             pip install docker
       - name: Docker names
-        run: echo "NAME=${{ mathix.image.name  }}" >> $GITHUB_ENV 
+        run: echo "NAME=${{ matrix.image.name  }}" >> $GITHUB_ENV 
       - name: Run Tests
         run: pytest tests
         env:
