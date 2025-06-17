@@ -4,6 +4,11 @@ on: push
 
 jobs:
   test:
+    strategy:
+        matrix:
+          image:
+              - name: python3.12
+                python_version: "3.12"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -19,9 +24,15 @@ jobs:
             pip install -r docker-images/requirements.txt
             pip install pytest
             pip install docker
-
+      - name: Docker names
+        run: echo "NAME=${{ mathix.image.name  }}" >> $GITHUB_ENV
+      - name: Build docker
+        
       - name: Run Tests
         run: pytest tests
+        env:
+            NAME: ${{ matrix.image.name  }}
+            PYTHON_VERSION: ${{ matrix.image.python_version }}
 
   build:
     runs-on: ubuntu-latest
