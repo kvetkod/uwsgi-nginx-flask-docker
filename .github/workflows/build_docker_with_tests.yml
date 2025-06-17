@@ -62,4 +62,4 @@ jobs:
 
       - name: Build
         run: |
-          docker build -f python${{ matrix.version }}.dockerfile -t ghcr.io/${{ github.repository }}:python${{ matrix.version }} ./docker_images
+          docker build -f python${{ matrix.version }}.dockerfile -t ghcr.io/${{ github.repository }}:python${{ matrix.version }} ./docker-images
