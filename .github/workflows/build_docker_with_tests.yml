@@ -47,6 +47,9 @@ jobs:
     permissions:
       contents: read
       packages: write
+    strategy:
+      matrix:
+        - version: [9, 10, 11, 12]
 
     steps:
       - uses: actions/checkout@v4
@@ -57,4 +60,6 @@ jobs:
             username: ${{ github.actor }}
             password: ${{ secrets.GITHUB_TOKEN }}
 
-
+     - name: Build
+       run: |
+          docker build -f docker-images/python3.${{ matrix.version }}.dockerfile $IMAGE:python3.${{ matrix.version }} .
