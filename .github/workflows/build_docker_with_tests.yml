@@ -63,3 +63,11 @@ jobs:
       - name: Build
         run: |
           docker build -f docker-images/python${{ matrix.version }}.dockerfile -t ghcr.io/${{ github.repository }}:python${{ matrix.version }} ./docker-images
+
+      - name: Scane with Trivy
+        uses: aquasecurity/trivy-action@master
+        with:
+            image_ref: ${{ env.IMAGE_NAME }}:python3.${{ matrix.version }}
+            format: 'table'
+            severity: 'CRITICAL,HIGH'
+
