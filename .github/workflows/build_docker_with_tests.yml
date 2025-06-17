@@ -60,6 +60,6 @@ jobs:
             username: ${{ github.actor }}
             password: ${{ secrets.GITHUB_TOKEN }}
 
-     - name: Build
+      - name: Build
        run: |
           docker build -f docker-images/python${{ matrix.version }}.dockerfile $IMAGE:python${{ matrix.version }} .
